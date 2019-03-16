@@ -14,4 +14,8 @@
 Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/login', 'Auth\LoginController@showLoginForm')->name('showLoginForm');
     Route::post('/_login', 'Auth\LoginController@login')->name('login');
+
+    /**【Todo】認証ミドルウェアの作成 */
+    Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
+
 });

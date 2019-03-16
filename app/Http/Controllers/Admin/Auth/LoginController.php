@@ -44,4 +44,12 @@ class LoginController extends Controller
     {
         return view('admin.auth.login');
     }
+
+    /**
+     * Login
+     */
+    public function login()
+    {
+        return redirect()->route('admin.dashboard.index');
+    }
 }
