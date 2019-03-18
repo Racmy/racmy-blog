@@ -52,4 +52,12 @@ class LoginController extends Controller
     {
         return redirect()->route('admin.dashboard.index');
     }
+
+    /**
+     * Logout
+     */
+    public function logout()
+    {
+        return redirect()->route('admin.showLoginForm');
+    }
 }
