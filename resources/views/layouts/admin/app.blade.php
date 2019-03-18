@@ -21,7 +21,7 @@
         <main class="main">
             @yield('breadcrumb')
             <div class="container-fluid">
-                @yield('content')
+                @yield('contents')
             </div>
         </main>
     </div>
