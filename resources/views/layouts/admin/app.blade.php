@@ -9,6 +9,7 @@
 <html lang="ja">
 <head>
     @include('layouts.admin.parts.head')
+    @yield('css')
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
     <header class="app-header">
