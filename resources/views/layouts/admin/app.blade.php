@@ -11,16 +11,15 @@
     @include('layouts.admin.parts.head')
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">
-    <header class="app-header navbar">
+    <header class="app-header">
         @include('layouts.admin.parts.header')
     </header>
     <div class="app-body">
         <div class="sidebar">
             @include('layouts.admin.components.sider')
-            <button class="sidebar-minimizer brand-minimizer" type="button"></button>
         </div>
         <main class="main">
-            @include('layouts.admin.components.breadcrumb')
+            @yield('breadcrumb')
             <div class="container-fluid">
                 @yield('content')
             </div>
