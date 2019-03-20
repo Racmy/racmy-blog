@@ -13,4 +13,7 @@
 
 @section('contents')
     ダッシュボード
+    <div id="example">
+
+    </div>
 @endsection
