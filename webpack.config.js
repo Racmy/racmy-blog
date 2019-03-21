@@ -1,5 +1,6 @@
 const path = require('path');
 var webpack = require('webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     // モードの設定、v4系以降はmodeを指定しないと、webpack実行時に警告が出る
     mode: 'development',
@@ -35,10 +36,36 @@ module.exports = {
                 ]
             },
             {
+                // eslintを事前に通す
                 enforce: 'pre',
                 test: /\.js$/,
                 exclude: '/node_modules/',
                 loader: 'eslint-loader'
+            },
+            {
+                test: /\.(sa|sc|c)ss$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            url: false,
+                        }
+                    }, {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: function () {
+                                return [
+                                    require('precss'),
+                                    require('autoprefixer')
+                                ];
+                            }
+                        }
+                    }, {
+                        loader: 'sass-loader'
+                    }
+
+                ]
             }
         ]
     },
@@ -49,6 +76,9 @@ module.exports = {
             'window.jQuery': 'jquery',
             // perfect-scrollbarがcoreuiで必要
             Popper: ['popper.js', 'perfect-scrollbar', 'default'],
+        }),
+        new MiniCssExtractPlugin({
+            filename: '../css/style.css',
         })
     ]
 };

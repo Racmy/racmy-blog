@@ -5,6 +5,8 @@ import 'jquery'
 import 'bootstrap'
 import '@coreui/coreui'
 
+import '../sass/index.scss'
+
 if (document.getElementById('example')) {
     ReactDOM.render(<Example />, document.getElementById('example'));
 }
