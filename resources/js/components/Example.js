@@ -1,21 +1,15 @@
 import React from 'react';
+import { Editor, EditorState } from 'draft-js';
 
 export default class Example extends React.Component {
+    constructor (props) {
+        super(props)
+        this.state = { editorState: EditorState.createEmpty() };
+        this.onChange = (editorState) => this.setState({ editorState });
+    }
     render() {
         return (
-            <div className="container">
-                <div className="row justify-content-center">
-                    <div className="col-md-8">
-                        <div className="card">
-                            <div className="card-header">Example Component</div>
-
-                            <div className="card-body">
-                                I'm an example component!
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <Editor editorState={this.state.editorState} onChange={this.onChange} />
         );
     }
 }

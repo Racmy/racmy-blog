@@ -11,4 +11,6 @@
 
 @section('contents')
     ブログ投稿
+    <div id="example">
+    </div>
 @endsection
