@@ -4,7 +4,6 @@ import React from 'react'
 import 'jquery'
 import 'bootstrap'
 import '@coreui/coreui'
-import 'draft-js/dist/Draft.css'
 
 import '../sass/index.scss'
 
