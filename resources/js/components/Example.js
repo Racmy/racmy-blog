@@ -1,12 +1,13 @@
 import React from 'react';
-import { Editor, EditorState, RichUtils, convertFromHTML, convertToRaw } from 'draft-js';
+import { Editor, EditorState, RichUtils, convertToRaw, DefaultDraftBlockRenderMap} from 'draft-js';
+import { Map } from 'immutable'
 import "../../sass/editor.scss"
 import 'draft-js/dist/Draft.css'
 
 export default class Example extends React.Component {
     constructor (props) {
         super(props)
-        // エディタの状態を空で初期化
+
         this.state = { editorState: EditorState.createEmpty() };
         // bind
         this.onChange = this.onChange.bind(this);
@@ -19,21 +20,29 @@ export default class Example extends React.Component {
     }
     onChange (editorState) {
         this.setState({editorState})
-        console.log(this.getCurrentContent())
     }
     onClick (e) {
         this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, e.target.name))//inlinestyleでboldやITALICをつける
     }
     saveEditor() {
         var content = convertToRaw(this.state.editorState.getCurrentContent())
-        console.log(content);
     }
     getCurrentContent () {
         return this.state.editorState.getCurrentContent()
     }
-    myBlockStyleFn (contentBlcock) {
-        const type = contentBlcock.getType()
-        console.log(type)
+    myBlockStyleFn (block) {
+        switch (block.getType()) {
+            case 'code-block':
+                return 'language-javascript';
+            case 'header-one':
+                return 'b_h1'
+            case 'header-two':
+                return 'b_h2'
+            case 'header-three':
+                return 'b_h3'
+            default:
+                return null;
+        }
     }
     onToggle (e)  {
         const editorState = RichUtils.toggleBlockType(this.state.editorState, e.target.name);
@@ -52,7 +61,6 @@ export default class Example extends React.Component {
             bold: 'BOLD',
             italic: 'ITALIC',
             underline: 'UNDERLINE',
-            code: 'CODE'
         };
         const inlineButtons = Object.keys(styles).map(style => {
             return (<button key={style} onClick={this.onClick} name={styles[style]} className="btn page-link text-dark d-inline-block rounded-0">
@@ -60,7 +68,7 @@ export default class Example extends React.Component {
                     </button>)
         })
         const elements = {
-            div: 'unstyled',
+            p: 'unstyled',
             code: 'code-block',
             h1: 'header-one',
             h2: 'header-two',
@@ -80,6 +88,15 @@ export default class Example extends React.Component {
                 <button onClick={this.saveEditor} className="btn page-link text-dark d-inline-block rounded-0">下書き</button>
             </div>
         )
+        // convertH
+        const customRenderMap = Map({
+            'unstyled': {
+                element: 'div',
+                aliasedElements: ['p'],
+            },
+        });
+        const extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(customRenderMap);
+
         return (
             <div>
                 <div className="flex-box-end">
@@ -122,11 +139,16 @@ export default class Example extends React.Component {
                         </div>
                     </div>
                 </div>
-                <Editor
-                    editorState={this.state.editorState}
-                    handleKeyCommand={this.handleKeyCommand}
-                    blockStyleFn={this.setStatemyBlockStyleFn}
-                    onChange={this.onChange} />
+                <div onClick={this.focus}>
+                    <Editor
+                        editorState={this.state.editorState}
+                        handleKeyCommand={this.handleKeyCommand}
+                        blockStyleFn={this.setStatemyBlockStyleFn}
+                        blockRenderMap={extendedBlockRenderMap}
+                        blockStyleFn={this.myBlockStyleFn}
+                        onChange={this.onChange}
+                        />
+                </div>
             </div>
         );
     }
