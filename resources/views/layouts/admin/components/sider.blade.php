@@ -25,8 +25,8 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{route('admin.category.index')}}">
-                <i class="fas fa-tasks"></i>
-                カテゴリ管理
+                <i class="fas fa-list"></i>
+                カテゴリ・タグ管理
             </a>
         </li>
         <li class="nav-item">

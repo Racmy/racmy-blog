@@ -8,7 +8,11 @@ export default class Example extends React.Component {
     constructor (props) {
         super(props)
 
-        this.state = { editorState: EditorState.createEmpty() };
+        this.state = {
+            editorState: EditorState.createEmpty(),
+            clicked: 'unstyled'
+        };
+
         // bind
         this.onChange = this.onChange.bind(this);
         this.onClick = this.onClick.bind(this);
@@ -21,8 +25,11 @@ export default class Example extends React.Component {
     onChange (editorState) {
         this.setState({editorState})
     }
-    onClick (e) {
-        this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, e.target.name))//inlinestyleでboldやITALICをつける
+    onClick (event) {
+        console.log(event.target);
+        console.log(event.target.name);
+        console.log(event.button)
+        this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, event.target.name))//inlinestyleでboldやITALICをつける
     }
     saveEditor() {
         var content = convertToRaw(this.state.editorState.getCurrentContent())
@@ -45,6 +52,9 @@ export default class Example extends React.Component {
         }
     }
     onToggle (e)  {
+        // click中のelementをstateに記録
+        this.setState({ clicked: e.target.name })
+        // editorBlockを更新
         const editorState = RichUtils.toggleBlockType(this.state.editorState, e.target.name);
         this.setState({ editorState });
     }
@@ -63,8 +73,12 @@ export default class Example extends React.Component {
             underline: 'UNDERLINE',
         };
         const inlineButtons = Object.keys(styles).map(style => {
-            return (<button key={style} onClick={this.onClick} name={styles[style]} className="btn page-link text-dark d-inline-block rounded-0">
-                        <i className={"fas fa-" + style}></i>
+            let inlineClassName = 'btn page-link text-dark d-inline-block rounded-0';
+            return (<button key={style}
+                        onClick={this.onClick}
+                        name={styles[style]}
+                        className={inlineClassName}>
+                        <i name={styles[style]} className={"fas fa-" + style}></i>
                     </button>)
         })
         const elements = {
@@ -79,8 +93,19 @@ export default class Example extends React.Component {
             ul: 'unordered-list-item',
             ol: 'ordered-list-item'
         }
+        /**
+         * tagName: p
+         * reactTagName: untyled
+         */
         const elementButtons = Object.keys(elements).map(tagName => {
-            return <button key={tagName} onClick={this.onToggle} name={elements[tagName]} className="btn page-link text-dark d-inline-block rounded-0">{tagName}</button>
+            let elementClassName = 'btn text-dark d-inline-block rounded-0'
+            let reactTagName = elements[tagName]
+            if(this.state.clicked == reactTagName){
+                elementClassName += ' btn-info';
+            } else {
+                elementClassName += ' page-link'
+            }
+            return <button key={tagName} onClick={this.onToggle} name={reactTagName} className={elementClassName}>{tagName}</button>
         })
         const saveButtons = (
             <div>
@@ -139,16 +164,14 @@ export default class Example extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div onClick={this.focus}>
-                    <Editor
-                        editorState={this.state.editorState}
-                        handleKeyCommand={this.handleKeyCommand}
-                        blockStyleFn={this.setStatemyBlockStyleFn}
-                        blockRenderMap={extendedBlockRenderMap}
-                        blockStyleFn={this.myBlockStyleFn}
-                        onChange={this.onChange}
-                        />
-                </div>
+                <Editor
+                    editorState={this.state.editorState}
+                    handleKeyCommand={this.handleKeyCommand}
+                    blockStyleFn={this.setStatemyBlockStyleFn}
+                    blockRenderMap={extendedBlockRenderMap}
+                    blockStyleFn={this.myBlockStyleFn}
+                    onChange={this.onChange}
+                    />
             </div>
         );
     }

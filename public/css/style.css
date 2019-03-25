@@ -6,26 +6,29 @@ div.DraftEditor-editorContainer {
 div[data-block="true"] {
   margin-bottom: 15px; }
 
+i {
+  pointer-events: none; }
+
 .b_h1 {
   background-color: #F7F7F7;
   border-left: 15px solid #0094FF;
   width: 100%;
   height: calc(width / 12);
-  padding: 10px 3.33%; }
+  padding: 10px 3%; }
 
 .b_h2 {
   background-color: #F7F7F7;
   border-left: 15px solid #0094FF;
   width: 100%;
   height: calc(width / 12);
-  padding: 10px 3.33%; }
+  padding: 10px 3%; }
 
 .b_h3 {
   background-color: #F7F7F7;
   border-left: 15px solid #0094FF;
   width: 100%;
   height: calc(width / 24);
-  padding: 10px 3.33%; }
+  padding: 10px 3%; }
 
 /**
  * prism.js default theme for JavaScript, CSS and HTML
