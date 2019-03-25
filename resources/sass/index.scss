@@ -1,1 +1,6 @@
-@import "~@coreui/coreui/scss/coreui.scss"
+@import "~@coreui/coreui/scss/coreui.scss";
+
+.flex-box-end {
+    display: flex;
+    justify-content: flex-end;
+}

@@ -21,6 +21,6 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     /**【Todo】認証ミドルウェアの作成 */
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
     Route::resource('/article', 'ArticleController');
-    Route::get('/category', 'CategoryController@index')->name('category.index');
+    Route::resource('/category', 'CategoryController');
     Route::get('/users', 'UserController@index')->name('users.index');
 });

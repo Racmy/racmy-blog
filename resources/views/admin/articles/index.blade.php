@@ -5,16 +5,9 @@
 @section('breadcrumb')
 <!-- Breadcrumb-->
 <ol class="breadcrumb">
-    <li class="breadcrumb-item active"><i class="fas fa-chart-line"></i> Dashboard</li>
+    <li class="breadcrumb-item"><i class="fas fa-chart-line"></i> Dashboard</li>
+    <li class="breadcrumb-item active"><i class="fas fa-chart-line"></i> 記事管理</li>
 </ol>
-@endsection
-
-@section('css')
-    <style>
-        .card table th {
-            border-top: 0px;
-        }
-    </style>
 @endsection
 
 @section('contents')
