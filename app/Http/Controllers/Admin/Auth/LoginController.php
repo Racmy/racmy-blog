@@ -26,7 +26,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/admin/dashboard';
 
     /**
      * Create a new controller instance.
@@ -47,6 +47,17 @@ class LoginController extends Controller
     }
 
     /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'name';
+    }
+
+
+    /**
      * Handle a login request to the application.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -57,10 +68,10 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $this->validateLogin($request);
-
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
+
         if ($this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
 
