@@ -1,7 +1,7 @@
 <div class="col-md-5">
     <div class="card p-0">
         <div class="card-header">
-            カテゴリ検索
+            タグ検索
         </div>
         <div class="card-body">
             <form>
@@ -16,7 +16,7 @@
     <div class="card">
         <div class="card-body">
             <div class="text-right mb-3">
-                <button class="btn btn-behance">カテゴリ登録</button>
+                <button class="btn btn-behance">タグ登録</button>
             </div>
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-end">
@@ -34,20 +34,27 @@
             <table class="table table-responsive-md table-hover mt-2">
                 <thead>
                     <tr>
-                        <th>カテゴリ</th>
+                        <th>タグ</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>PHP</td>
+                        <td>Laravel</td>
                         <td class="text-right">
                             <button class="btn btn-success">編集</button>
                             <button class="btn btn-danger">削除</button>
                         </td>
                     </tr>
                     <tr>
-                        <td>JavaScript</td>
+                        <td>Vue.js</td>
+                        <td class="text-right">
+                            <button class="btn btn-success">編集</button>
+                            <button class="btn btn-danger">削除</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>React.js</td>
                         <td class="text-right">
                             <button class="btn btn-success">編集</button>
                             <button class="btn btn-danger">削除</button>
