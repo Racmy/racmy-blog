@@ -95,6 +95,7 @@ class LoginController extends Controller
      */
     public function logout()
     {
+        \Auth::logout();
         return redirect()->route('admin.showLoginForm');
     }
 }

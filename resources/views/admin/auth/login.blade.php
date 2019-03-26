@@ -23,7 +23,7 @@
                             @csrf
                             <div class="card-body">
                                 <h1>Racmy</h1>
-                                <p class="text-muted">Sign In to your account</p>
+                                <p class="text-muted p-2">Sign In to your account</p>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">

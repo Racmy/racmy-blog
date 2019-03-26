@@ -24,6 +24,3 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('/category', 'CategoryController');
     Route::get('/users', 'UserController@index')->name('users.index');
 });
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
