@@ -23,14 +23,14 @@
                             @csrf
                             <div class="card-body">
                                 <h1>Racmy</h1>
-                                <p class="text-muted">Sign In to your account</p>
+                                <p class="text-muted p-2">Sign In to your account</p>
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text">
                                             <i class="fas fa-user-alt"></i>
                                         </span>
                                     </div>
-                                    <input class="form-control" type="text" placeholder="Username">
+                                    <input class="form-control" name="name" type="text" placeholder="Username">
                                 </div>
                                 <div class="input-group mb-4">
                                     <div class="input-group-prepend">
@@ -38,7 +38,7 @@
                                             <i class="fas fa-key"></i>
                                         </span>
                                     </div>
-                                    <input class="form-control" type="password" placeholder="Password">
+                                    <input class="form-control" name="password" type="password" placeholder="Password">
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
