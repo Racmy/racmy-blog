@@ -3,7 +3,7 @@
         記事の検索
     </div>
     <div class="card-body">
-        <form>
+        <form class="article-search">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -49,7 +49,7 @@
                 </div>
                 <div class="col-md-6">
                     <label for="sort">並び替え</label>
-                    <div>
+                    <div class="form-control">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="sort" id="inlineRadio1" value="option1">
                             <label class="form-check-label" for="inlineRadio1">PV多</label>
