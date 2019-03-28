@@ -26,13 +26,30 @@ export default class Example extends React.Component {
         this.setState({editorState})
     }
     onClick (event) {
-        console.log(event.target);
-        console.log(event.target.name);
-        console.log(event.button)
         this.onChange(RichUtils.toggleInlineStyle(this.state.editorState, event.target.name))//inlinestyleでboldやITALICをつける
     }
     saveEditor() {
-        var content = convertToRaw(this.state.editorState.getCurrentContent())
+        var rawContentState = convertToRaw(this.state.editorState.getCurrentContent())
+        console.log(rawContentState)
+        let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        fetch('/api/article/store', {
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json, text-plain, */*",
+                "X-Requested-With": "XMLHttpRequest",
+                "X-CSRF-TOKEN": token
+            },
+            method: 'post',
+            credentials: "same-origin",
+            body: JSON.stringify(rawContentState)
+        })
+        .then(response => {
+            console.log(response)
+        })
+        .catch(response => {
+            console.log(response)
+            console.log('error')
+        })
     }
     getCurrentContent () {
         return this.state.editorState.getCurrentContent()
