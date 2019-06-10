@@ -13,6 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::namespace('Api')->name('api.')->group(function () {
+Route::middleware('auth')->namespace('Api')->name('api.')->group(function () {
     Route::post('/article/store', 'ArticleController@store')->name('article.store');
 });

@@ -30,7 +30,6 @@ export default class Example extends React.Component {
     }
     saveEditor() {
         var rawContentState = convertToRaw(this.state.editorState.getCurrentContent())
-        console.log(rawContentState)
         let token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
         fetch('/api/article/store', {
             headers: {
@@ -48,7 +47,6 @@ export default class Example extends React.Component {
         })
         .catch(response => {
             console.log(response)
-            console.log('error')
         })
     }
     getCurrentContent () {
