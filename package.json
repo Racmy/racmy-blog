@@ -21,7 +21,7 @@
         "eslint-plugin-react": "^7.12.4",
         "jquery": "^3.2",
         "laravel-mix": "^4.0.7",
-        "lodash": "^4.17.5",
+        "lodash": "^4.17.21",
         "node-sass": "^4.11.0",
         "popper.js": "^1.12",
         "precss": "^4.0.0",
